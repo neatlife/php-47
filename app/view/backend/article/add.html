@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="TQBlog V2.0 Release 20140101" />
+<meta name="robots" content="none" />
+<title>www.tqblog.com - 文章编辑 - Powered by TQBlog</title>
+<link href="web/<?= PLATFORM ?>/css/admin.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="web/<?= PLATFORM ?>/css/jquery.bettertip.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="web/<?= PLATFORM ?>/css/jquery-ui.custom.css"/>
+<script src="web/<?= PLATFORM ?>/script/common.js" type="text/javascript"></script>
+<script src="web/<?= PLATFORM ?>/script/jquery.bettertip.pack.js" type="text/javascript"></script>
+<script src="web/<?= PLATFORM ?>/script/jquery-ui.custom.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="web/<?= PLATFORM ?>/script/jquery.tagto.js"></script>
+<script type="text/javascript" src="web/<?= PLATFORM ?>/script/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="web/<?= PLATFORM ?>/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="web/<?= PLATFORM ?>/ckeditor/adapters/jquery.js"></script>
+</head>
+<body>
+<section class="main"><div id="divMain">
+<div class="divHeader2">文章编辑</div>
+<div class="SubMenu"></div>
+<div id="divMain2" class="edit post_edit">
+	<form id="edit" name="edit" method="post" action="index.php?p=backend&c=Article&a=add">
+		<div id="divEditLeft">
+			<div id="divEditTitle">
+				<!-- title( -->
+				<div id='titleheader' class='editmod'>
+					<label for="edtTitle" class="editinputname" >标题</label>
+						<div><input type="text" name="Title" id="edtTitle"  maxlength="100" onBlur="if(this.value=='') this.value='未命名'" onFocus="if(this.value=='未命名') this.value=''" value="未命名" />
+						</div>
+				</div>
+				<!-- )title -->
+			</div>
+		
+			<div id="divContent" style="clear:both;">
+				<div id='cheader' class='editmod'>
+					<label for="editor_content" class="editinputname" >正文</label>&nbsp;&nbsp;
+					<span id="timemsg"></span>
+					<span id="msg2"></span>
+					<span id="msg"></span>
+					<span class="editinputname" ></span>
+				</div>
+				<div id='carea' class='editmod'>
+					<textarea id="editor_content" name="Content"></textarea>
+				</div>
+				<div id="contentready" style="display:none">
+					<img alt="loading" id="statloading1" src="image/admin/loading.gif"/>Waiting...
+				</div>
+				
+				<script>
+					//采用jQuery形式加载
+					$('#editor_content').ckeditor({
+						customConfig:'config_user.js'
+					});
+				</script>
+				
+
+				<!-- 1号输出接口 -->
+				<div id='response' class='editmod'></div>
+				<div id="divIntro" style="display:none;">
+					<div id='introheader' class='editmod'>
+						<label for="editor_intro" class="editinputname" >摘要</label>
+					</div>
+					<textarea id="editor_intro" name="Intro"></textarea>
+					<div id="introready" style="display:none">
+						<img alt="loading" id="statloading2" src="image/admin/loading.gif"/>Waiting...
+					</div>
+					<hr/>
+				</div>
+				<!-- 2号输出接口 -->
+				<div id='response2' class='editmod'></div>
+			</div>
+		</div>
+		<!-- divEditLeft -->
+		<div id="divEditRight">
+			<div id="divEditPost">
+				<div id="divBox">
+					<div id="divFloat">
+						<div id='post' class='editmod'>
+							<input class="button" style="width:180px;height:38px;" type="submit" value="提交" id="btnPost" onclick='return checkArticleInfo();' />
+						</div>
+
+          <!-- cate -->          
+						<div id='cate' class='editmod'> 
+							<label for="cmbTemplate" class="editinputname" >分类</label>
+							<select style="width:180px;" class="edit" size="1" name="CateID" id="cmbCateID">
+								<option  value="0">未分类</option>
+								<?php foreach($categorys as $category): ?>
+								<option value="<?= $category['id'] ?>">
+										<?= str_repeat('&nbsp;', $category['level'] * 4) ?><?= $category['name'] ?>
+								</option>
+								<?php endforeach; ?>
+							</select>
+						</div>
+						<!-- cate -->
+						<!-- level -->
+						 <div id='level' class='editmod'>
+							<label for="cmbPostStatus" class="editinputname" >状态</label>
+							<select class="edit" style="width:180px;" size="1" name="Status" id="cmbPostStatus" onChange="edtLevel.value=this.options[this.selectedIndex].value">
+															<option value="2">草稿</option>
+															<option value="1">公开</option>
+															<option value="3">隐藏</option>
+														</select>
+						</div>
+          <!-- )level -->
+
+          <!-- newdatetime( -->
+						<div id='newdatetime' class='editmod'> 
+							<label for="edtDateTime" class="editinputname" >日期</label>
+							<input type="text" name="PostTime" id="edtDateTime"  value="2015-11-20 16:33:19" style="width:171px;"/>
+						</div>
+
+          <!-- )newdatetime -->
+
+						<div id='isTop'>
+							<label for="isTop" class="editinputname" >置顶&nbsp;&nbsp;</label>
+							<input type="checkbox" name="isTop" value="1" style="width:171px;"/>
+						</div>
+
+          <!-- Navbar( -->          <!-- )Navbar -->
+
+          <!-- 3号输出接口 -->
+						<div id='response3' class='editmod'></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- divEditRight -->
+	</form>
+</div>
+
+<script type="text/javascript">ActiveLeftMenu("aArticleEdt");</script><script type="text/javascript">AddHeaderIcon("new_32.png");</script>
+<script type="text/javascript">
+
+var tag_loaded=false; //是否已经ajax读取过TAGS
+var sContent="",sIntro="";//原内容与摘要
+var isSubmit=false;//是否提交保存
+
+var editor_api={
+	editor:	{
+		content:{
+			obj:{},
+			get:function(){return ""},
+			insert:function(){return ""},
+			put:function(){return ""},
+			focus:function(){return ""}
+		},
+		intro:{
+			obj:{},
+			get:function(){return ""},
+      insert:function(){return ""},
+			put:function(){return ""},
+			focus:function(){return ""}
+		}
+	}
+}
+
+//文章内容或摘要变动提示保存
+window.onbeforeunload = function(){
+  if (!isSubmit && (editor_api.editor.content.get()!=sContent)) return "当前的编辑内容还未保存！";
+}
+
+function checkArticleInfo(){
+  if(isSubmit)return false;
+  document.getElementById("edit").action="index.php?p=backend&c=Article&a=add";
+  if(!CKEDITOR.instances['editor_content'].getData()){
+	alert('正文不能为空！');
+    return false;
+  }
+  isSubmit=true;
+}
+
+//日期时间控件
+$.datepicker.regional['zh-cn'] = {
+  closeText: '完成',
+  prevText: '上个月',
+  nextText: '下个月',
+  currentText: '现在',
+  monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+  monthNamesShort: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+  dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+  dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+  dayNamesMin: ['日','一','二','三','四','五','六'],
+  weekHeader: '周',
+  dateFormat: 'yy-mm-dd',
+  firstDay: 1,
+  isRTL: false,
+  showMonthAfterYear: true,
+  yearSuffix: ' 年  '
+};
+$.datepicker.setDefaults($.datepicker.regional['zh-cn']);
+$.timepicker.regional['zh-cn'] = {
+  timeOnlyTitle: '时间',
+  timeText: '时间',
+  hourText: '小时',
+  minuteText: '分钟',
+  secondText: '秒钟',
+  millisecText: '毫秒',
+  currentText: '现在',
+  closeText: '完成',
+  timeFormat: 'hh:mm:ss',
+  ampm: false
+};
+$.timepicker.setDefaults($.timepicker.regional['zh-cn']);
+$('#edtDateTime').datetimepicker({
+  showSecond: true
+  //changeMonth: true,
+  //changeYear: true
+});
+
+
+//显示tags
+$(document).click(function (event){$('#ulTag').slideUp("fast");});
+
+$('#showtags').click(function (event) {
+  event.stopPropagation();
+  var offset = $(event.target).offset();
+  $('#ulTag').css({ top: offset.top + $(event.target).height()+20+ "px", left: offset.left});
+  $('#ulTag').slideDown("fast");
+  if(tag_loaded==false){$.getScript('../admin.php?act=misc&type=showtags');tag_loaded=true;}
+  return false;
+});
+function AddKey(i) {
+  var strKey=$('#edtTag').val();
+  var strNow=","+i
+  if(strKey==""){
+    strNow=i
+  }
+  if(strKey.indexOf(strNow)==-1){
+    strKey=strKey+strNow;
+  }
+  $('#edtTag').val(strKey);
+}
+function DelKey(i) {
+  var strKey=$('#edtTag').val();
+  var strNow="{"+i+"}"
+  if(strKey.indexOf(strNow)!=-1){
+    strKey=strKey.substring(0,strKey.indexOf(strNow))+strKey.substring(strKey.indexOf(strNow)+strNow.length,strKey.length)
+  }
+  $('#edtTag').val(strKey);
+}
+
+//提取摘要
+function AutoIntro() {
+  var s=editor_api.editor.content.get();
+  if(s.indexOf("<hr class=\"more\" />")>-1){
+    editor_api.editor.intro.put(s.split("<hr class=\"more\" />")[0]);
+  }else{
+	  if(s.indexOf("<hr class=\"more\"/>")>-1){
+      editor_api.editor.intro.put(s.split("<hr class=\"more\"/>")[0]);
+  	}else{
+	  	editor_api.editor.intro.put(s.substring(0,250));
+  	}
+  }
+	$("#divIntro").show();
+	$('html,body').animate({scrollTop:$('#divIntro').offset().top},'fast');
+}
+
+//文章编辑提交区随动JS开始
+var oDiv=document.getElementById("divFloat");
+var H=0;var Y=oDiv;
+while(Y){H+=Y.offsetTop;Y=Y.offsetParent;};
+$(window).bind("scroll resize",function(){
+  var s=document.body.scrollTop||document.documentElement.scrollTop;
+  if(s>H){
+    $("#divFloat").addClass("boxfloat");
+  }
+  else{
+	$("#divFloat").removeClass("boxfloat");
+  }
+});
+
+
+
+function editor_init(){
+	editor_api.editor.content.obj=$('#editor_content');
+	editor_api.editor.intro.obj=$('#editor_intro');
+	editor_api.editor.content.get=function(){return this.obj.val()};
+	editor_api.editor.content.put=function(str){return this.obj.val(str)};
+	editor_api.editor.content.focus=function(){return this.obj.focus()};
+	editor_api.editor.intro.get=function(){return this.obj.val()};
+	editor_api.editor.intro.put=function(str){return this.obj.val(str)};
+	editor_api.editor.intro.focus=function(){return this.obj.focus()};
+	sContent=editor_api.editor.content.get();
+}
+
+</script>
+
+<script type="text/javascript">
+
+var EditorIntroOption = {
+	toolbars:[['Source', 'bold', 'italic','link','insertimage','Undo', 'Redo']],
+	autoHeightEnabled:false,
+	initialFrameHeight:200
+}
+
+
+function getContent(){
+  return editor_api.editor.content.get();
+}
+
+function getIntro(){
+  return editor_api.editor.intro.get();
+}
+
+function setContent(s){
+	editor_api.editor.content.put(s);
+}
+
+function setIntro(s){
+  editor_api.editor.intro.put(s);
+}
+
+function editor_init(){
+
+editor_api.editor.content.obj=UE.getEditor('editor_content');
+editor_api.editor.intro.obj=UE.getEditor('editor_intro',EditorIntroOption);
+editor_api.editor.content.get=function(){return this.obj.getContent()};
+editor_api.editor.content.put=function(str){return this.obj.setContent(str)};
+editor_api.editor.content.focus=function(){return this.obj.focus()};
+editor_api.editor.intro.get=function(){return this.obj.getContent()};
+editor_api.editor.intro.put=function(str){return this.obj.setContent(str)};
+editor_api.editor.intro.focus=function(){return this.obj.focus()};
+
+
+editor_api.editor.content.obj.ready(function(){sContent=editor_api.editor.content.get();});
+editor_api.editor.intro.obj.ready(function(){sIntro=editor_api.editor.intro.get();});
+
+$(document).ready(function(){
+	$('#edit').submit(function(){if(editor_api.editor.content.obj.queryCommandState('source')==1) editor_api.editor.content.obj.execCommand('source');
+	if(editor_api.editor.intro.obj.queryCommandState('source')==1) editor_api.editor.intro.obj.execCommand('source');}) 
+	/*源码模式下保存时必须切换*/
+});
+
+}
+</script>
+<script type="text/javascript">editor_init();</script>
+
+</div>
+</section></body>
+</html><!--75.817ms-->

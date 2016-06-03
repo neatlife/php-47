@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="none" />
+	<link rel="stylesheet" href="web/backend/css/module.css" type="text/css" media="screen" />
+	<script src="web/backend/script/common.js" type="text/javascript"></script>
+	<script src="web/backend/script/md5.js" type="text/javascript"></script>
+	<title>www.myblog.com - 登录 - Powered by myblog</title>
+</head>
+<body>
+
+<!-- top bar -->
+<div id="top">
+	<div class="center">
+    <div class="menu-left">
+    <ul>
+     <li><a href="../">返回首页</a></li>    
+    </ul>
+    </div>
+    <div class="menu-right">
+    <ul>
+     	<li></li> 
+    </ul>
+    </div>
+   </div>	
+</div>
+<div class="bg">
+<div id="wrapper">
+  <div class="logo"><a href="../" title="www.myblog.com"></a></div>
+  <div class="login">
+    <form method="post" action="index.php?a=login&c=User&p=backend"><!--如果action没有数据，代表提交给当前请求的URL脚本：admin.php-->
+    <dl>
+      <dt></dt>
+      <dd class="username"><label for="edtUserName">用户名:</label><input type="text" id="edtUserName" name="edtUserName" size="20" value="" tabindex="1" /></dd>
+      <dd class="password"><label for="edtPassWord">密码:</label><input type="password" id="edtPassWord" name="edtPassWord" size="20" tabindex="2" /></dd>
+    </dl>
+    <dl>
+		<dt></dt>
+		<dd class="username"><label for="edtUserName">验证码:</label><input type="text" id="edtCaptcha" name="edtCaptcha" size="20" value="" tabindex="3" /></dd>
+		<dd  class="password"><label for="edtCaptcha"><img src="index.php?p=backend&c=User&a=captcha" width="220" height="30" onClick="this.src = 'index.php?p=backend&c=User&a=captcha&' + Math.random()"></label></dd>
+	</dl>
+    <dl>
+      <dt></dt>
+	  <dd class="checkbox"><input type="checkbox" name="chkRemember" id="chkRemember"  tabindex="3" /><label for="chkRemember">保持登录</label></dd>
+      <dd class="submit"><input id="btnPost" name="btnPost" type="submit" value="登录" class="button" tabindex="4"/></dd>
+    </dl>
+    <dl>
+        <dt></dt>
+        <dd class="username"></dd>
+        <dd class="password"><label for="edtRegister"><a href="admin.php?module=Privilege&amp;action=register">还没有账号？请先注册！</a></label></dd>
+    </dl>
+	<input type="hidden" name="username" id="username" value="" />
+	<input type="hidden" name="password" id="password" value="" />
+	<input type="hidden" name="action"  value="check" />
+	<input type="hidden" name="module"  value="Privilege" />
+    </form>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+$("#btnPost").click(function(){
+
+	var strUserName=$("#edtUserName").val();
+	var strPassWord=$("#edtPassWord").val();
+
+	if((strUserName=="")||(strPassWord=="")){
+		alert("用户名和密码不能为空");
+		return false;
+	}
+	
+	$("#edtUserName").remove();
+	$("#edtPassWord").remove();
+	//alert(MD5(strPassWord));
+	strUserName=strUserName;
+	strPassWord=MD5(strPassWord);
+
+	$("form").attr("action","index.php?a=login&c=User&p=backend");
+	$("#username").val(strUserName);
+	$("#password").val(strPassWord);
+	
+});
+
+$(document).ready(function(){
+	if (!$.support.leadingWhitespace) {
+		alert("骚年,你还在用IE6,7,8内核的浏览器么?请升级至支持html5的IE9吧!\r\n要不咱换个Chrome,Firefox试试(—.—||||");
+	}
+});
+
+</script>
+</body>
+</html>
+<!--82.403ms-->

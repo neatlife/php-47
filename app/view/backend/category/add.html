@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="TQBlog V2.0 Release 20140101" />
+<meta name="robots" content="none" />
+<title>www.tqblog.com - 分类添加 - Powered by TQBlog</title>
+<link href="web/<?php echo PLATFORM ?>/css/admin.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="web/<?= PLATFORM ?>/css/jquery.bettertip.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="web/<?= PLATFORM ?>/css/jquery-ui.custom.css"/>
+<script src="web/<?= PLATFORM ?>/script/common.js" type="text/javascript"></script>
+<script src="web/<?= PLATFORM ?>/script/jquery.bettertip.pack.js" type="text/javascript"></script>
+<script src="web/<?= PLATFORM ?>/script/jquery-ui.custom.min.js" type="text/javascript"></script>
+</head>
+<body>
+<section class="main">
+<div id="divMain">
+  <div class="divHeader2">分类添加</div>
+  <div class="SubMenu"></div>
+  <div id="divMain2" class="edit category_edit">
+	<form id="edit" name="edit" method="post" action="admin.php">
+	<input type="hidden" name="action" value="insert"/>
+	<input type="hidden" name="module" value="Category"/>
+	  <p>
+		<span class="title">名称:</span><span class="star">(*)</span><br />
+		<input id="edtName" class="edit" size="40" name="Name" maxlength="50" type="text" value="未命名"  onFocus="click_focus(this)" onBlur="click_blur(this)" />
+		<script>
+			/*
+			 * 捕捉焦点
+			 * @object e，当前对象自己（input）
+			*/
+			function click_focus(e){
+				//判断当前对象本身的值是否是未命名
+				if(e.value == '未命名'){
+					e.value = '';	//置空
+				}
+			}
+			
+			//失去焦点操作
+			function click_blur(e){
+				//判断焦点是否为空
+				if(e.value == ''){
+					e.value = e.defaultValue;	//值为Input框的默认值
+				}
+			}
+		</script>
+		
+	  </p>
+	  <p>
+		<span class="title">别名:</span><br />
+		<input id="edtAlias" class="edit" size="40" name="Alias" type="text" value="" />
+	  </p>
+
+	  <p>
+		<span class="title">排序:</span><br />
+		<input id="edtOrder" class="edit" size="40" name="Order" type="text" value="50" />
+	  </p>
+	  <p>
+		<span class="title">父分类:</span><br />
+		<select id="edtParentID" name="ParentID" class="edit" size="1">
+			<option value="0">无</option>
+			<?php foreach($categorys as $category) { ?>
+				<option value="<?= $category['id'] ?>"><?php echo str_repeat('&nbsp;', $category['level'] * 4) ?><?= $category['name'] ?></option>
+			<?php } ?>
+		</select>
+	  </p>
+	 
+    <!-- 1号输出接口 -->
+       <div id='response' class='editmod'>
+	   </div>
+	  <p>
+		<input type="submit" class="button" value="提交" id="btnPost" onclick="return checkInfo();" />
+	  </p>
+	</form>
+	<script type="text/javascript">
+function checkInfo(){
+  document.getElementById("edit").action="";
+
+  if(!$("#edtName").val()){
+    alert("名称不能为空！");
+    return false
+  }
+
+}
+	</script>
+	<script type="text/javascript">ActiveLeftMenu("aCategoryAdmin");</script>
+	<script type="text/javascript">AddHeaderIcon("image/admin/category_32.png");</script>
+  </div>
+</div>
+
+
+</section></body>
+</html><!--101.304ms-->
