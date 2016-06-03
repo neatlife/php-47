@@ -35,7 +35,10 @@ class CategoryModel extends Model
     // 连接查询出所有的分类
     public function getAllWithJoin()
     {
-        $sql = "SELECT category.*, count(article.id) AS count FROM category LEFT JOIN article ON category.id=article.category_id GROUP BY category.id";
+        $sql = "SELECT category.*, count(article.id) AS count
+                  FROM category
+                  LEFT JOIN article ON category.id=article.category_id
+                  GROUP BY category.id";
         return $this->getAll($sql);
     }
 }
