@@ -10,12 +10,14 @@
 namespace app\controller\backend;
 
 
+use app\model\CommentModel;
 use core\Controller;
 
 class CommentController extends Controller
 {
     public function getList()
     {
+        $comments = CommentModel::create()->getAllWithJoin();
         
     }
 }
