@@ -47,6 +47,7 @@ class ArticleController extends \core\Controller
 
     public function getList()
     {
+        $this->denyAccess();
         $where = '2 > 1';
         if ($_POST) {
             if ($_POST['category']) {
