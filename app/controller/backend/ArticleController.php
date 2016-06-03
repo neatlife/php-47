@@ -81,7 +81,7 @@ class ArticleController extends \core\Controller
         $pageButtons = $pager->showPage();
 
         $start = ($page - 1) * $pageSize;
-        $articles = ArticleModel::create()->findAll($where, 'id ASC', $start, $pageSize);
+        $articles = ArticleModel::create()->getAllWithJoin($where, 'id ASC', $start, $pageSize);
         $categories = CategoryModel::create()
                         ->limitlessLevelCategory(
                             CategoryModel::create()->findAll()
