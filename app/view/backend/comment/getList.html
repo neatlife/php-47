@@ -26,7 +26,7 @@
 	<table border="1" class="tableFull tableBorder tableBorder-thcenter">
 		<tr>
 			<th>ID</th>
-			<th>上层ID</th>
+			<th>上层评论的评论的内容</th>
 			<th>用户</th>
 			<th>评论</th>
 			<th>文章名字</th>
@@ -34,36 +34,18 @@
 			<th>操作</th>
 			<th><a href="" onclick="BatchSelectAll();return false;">全选</a></th>
 		</tr>
-					<tr>
-			<th>1</th>
-			<th>0</th>
-			<th>admin</th>
-			<th style="text-align:left">fsadfasdf</th>
-			<th>遍访湖湘美食</th>
-			<th>2016-04-16 02:30:24</th>
+		<?php foreach($comments as $comment): ?>
+		<tr>
+			<th><?= $comment['id'] ?></th>
+			<th><?= $comment['parent_content'] ?></th>
+			<th><?= $comment['username'] ?></th>
+			<th style="text-align:left"><?= $comment['content'] ?></th>
+			<th><?= $comment['title'] ?></th>
+			<th><?= date('Y-m-d H:i:s', $comment['publish_time']) ?></th>
 			<th><a href="">删除</a></th>
 			<th><input type="checkbox" name="del[]" value="1"></th>
 		</tr>
-					<tr>
-			<th>2</th>
-			<th>1</th>
-			<th>admin</th>
-			<th style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fdsafasdfa</th>
-			<th>遍访湖湘美食</th>
-			<th>2016-04-16 02:30:34</th>
-			<th><a href="">删除</a></th>
-			<th><input type="checkbox" name="del[]" value="2"></th>
-		</tr>
-					<tr>
-			<th>3</th>
-			<th>2</th>
-			<th>admin</th>
-			<th style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fdasfdasdfasdf</th>
-			<th>遍访湖湘美食</th>
-			<th>2016-04-16 02:30:42</th>
-			<th><a href="">删除</a></th>
-			<th><input type="checkbox" name="del[]" value="3"></th>
-		</tr>
+		<?php endforeach; ?>
 			</table><hr/>
 	<p style="float:right;">
 		<input type="submit" name="all_del"  value="所选全部删除"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="all_audit"  value="所选全部审核"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>

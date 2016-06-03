@@ -18,6 +18,8 @@ class CommentController extends Controller
     public function getList()
     {
         $comments = CommentModel::create()->getAllWithJoin();
-        
+        return $this->loadHtml('comment/getList', array(
+            'comments' => $comments,
+        ));
     }
 }
