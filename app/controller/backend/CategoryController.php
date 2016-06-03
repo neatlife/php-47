@@ -51,7 +51,7 @@ class CategoryController extends Controller
         // 查询出所有的分类
         $categorys = CategoryModel::create()
                         ->limitlessLevelCategory(
-                            CategoryModel::create()->findAll('2 > 1', 'sort DESC')
+                            CategoryModel::create()->getAllWithJoin()
                         );
         // 在html里显示
         $this->loadHtml('category/getList', array(

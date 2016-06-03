@@ -34,7 +34,7 @@
 				<td class="td5"><?= $category['sort'] ?></td>
 				<td class="td25"><a href="" target="_blank"><img src="web/<?= PLATFORM ?>/image/admin/link.png" alt="" title="" width="16" /></a><?= str_repeat('&nbsp;', $category['level'] * 4) ?> <?= $category['name'] ?></td>
 				<td class="td20"><?= $category['nickname'] ?></td>
-				<td class="td10">暂无</td>
+				<td class="td10"><?= $category['count'] ?></td>
 				<td class="td10 tdCenter"><a href="index.php?p=backend&c=Category&a=update&id=<?= $category['id'] ?>"><img src="web/<?= PLATFORM ?>/image/admin/folder_edit.png" alt="编辑" title="编辑" width="16" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="return window.confirm('单击“确定”继续。单击“取消”停止。');" href="index.php?p=backend&c=Category&a=delete&id=<?= $category['id'] ?>"><img src="web/<?= PLATFORM ?>/image/admin/delete.png" alt="删除" title="删除" width="16" /></a></td>
 			</tr>
 		<?php endforeach; ?>
