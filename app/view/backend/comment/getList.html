@@ -42,7 +42,7 @@
 			<th style="text-align:left"><?= $comment['content'] ?></th>
 			<th><?= $comment['title'] ?></th>
 			<th><?= date('Y-m-d H:i:s', $comment['publish_time']) ?></th>
-			<th><a href="">删除</a></th>
+			<th><a onclick="return confirm('我是傻逼吗？');" href="index.php?p=backend&c=Comment&a=delete&id=<?= $comment['id'] ?>">删除</a></th>
 			<th><input type="checkbox" name="del[]" value="1"></th>
 		</tr>
 		<?php endforeach; ?>
