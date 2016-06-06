@@ -97,7 +97,10 @@ class Application
     protected static function _registerAutoload()
     {
         spl_autoload_register(function($className) {
-            require ROOT_PATH . DS . str_replace('\\', '/', $className) . '.php';
+            $fileName = ROOT_PATH . DS . str_replace('\\', '/', $className) . '.php';
+            if (is_file($fileName)) {
+                require $fileName;
+            }
         });
     }
 
