@@ -17,7 +17,7 @@ class ArticleController extends Controller
 {
     public function getList()
     {
-        $articles = ArticleModel::create()->getAllWithJoin();
+        $articles = ArticleModel::create()->getAllWithJoin('2 > 1', '`id` ASC', 0, false);
         var_dump($articles);die;
     }
 }

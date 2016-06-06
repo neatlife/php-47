@@ -31,8 +31,10 @@ class ArticleModel extends \core\Model
                   LEFT JOIN `comment` ON `comment`.`article_id`=`article`.`id`
                   WHERE {$where}
                   GROUP BY `article`.`id`
-                  ORDER BY {$sort}
-                  LIMIT {$start}, {$pageSize}";
+                  ORDER BY {$sort}";
+        if ($pageSize !== false) {
+            $sql .= " LIMIT {$start}, {$pageSize}";
+        }
         return $this->getAll($sql);
     }
 }
