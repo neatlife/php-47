@@ -16,6 +16,8 @@
 -- top    是否置顶 enum('是', '否') 不能为空 默认值是'否'
 --  提升，更灵活的写法
 -- top    是否指定 数字（1.置顶，2.未置顶） 不能为空，默认值是2
+-- read  阅读数 数字 不能为空 默认值是0
+-- praise 赞的数量 数字 不能为空 默认值是0
 
 CREATE TABLE `article` (
   `id` INT PRIMARY KEY auto_increment,
@@ -28,3 +30,18 @@ CREATE TABLE `article` (
 
 ALTER TABLE `article`  ADD COLUMN `content` TEXT;-- text类型没有设置默认值的选项，没有not null。
 ALTER TABLE `article` ADD COLUMN `top` TINYINT NOT NULL DEFAULT 2;
+
+ALTER TABLE `article` ADD COLUMN `read` INT NOT NULL DEFAULT 0;
+ALTER TABLE `article` ADD COLUMN `praise` INT NOT NULL DEFAULT 0;
+
+
+
+
+
+
+
+
+
+
+
+
