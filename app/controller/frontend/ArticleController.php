@@ -34,6 +34,10 @@ class ArticleController extends Controller
     {
         $id = $_GET['id'];
         $article = ArticleModel::create()->getOneWithJoin($id);
+        $this->s->assign(array(
+            'article' => $article,
+        ));
+        $this->s->display('frontend/article/detail.html');
     }
 }
 
