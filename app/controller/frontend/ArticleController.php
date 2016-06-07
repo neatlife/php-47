@@ -41,7 +41,7 @@ class ArticleController extends Controller
         $comments = CommentModel::create()->limitlessLevel(
             CommentModel::create()->getAllWithJoinUserByArticleId($id)
         );
-        print_r($comments);die;
+        //print_r($comments);die;
 
         $this->s->assign(array(
             'article' => $article,

@@ -87,11 +87,13 @@
 		</small>
 	</li>
 	<li class="msgarticle"><{$comment.content}><label id="AjaxComment1"></label>
-		<!--<label id="cmt2"></label>-->
-		<!--<ul id="cmt2" class="msg">-->
-			<!--<li class="msgname"><img width="32" alt="" src="web/<{$smarty.const.PLATFORM}>/image/admin/0.png" class="avatar">&nbsp;<span class="commentname"><a target="_blank" rel="nofollow" href="">admin</a></span><br><small>发布于&nbsp;2016-04-16 02:30:34&nbsp;&nbsp;<span class="revertcomment"><a onclick="RevertComment('2')" href="#comment">回复</a></span></small></li>-->
-			<!--<li class="msgarticle">fdsafasdfa<label id="AjaxComment1"></label>-->
-		<!--</ul>-->
+        <{foreach $comment.son as $sonComment}>
+		<label id="cmt2"></label>
+		<ul id="cmt2" class="msg">
+			<li class="msgname"><img width="32" alt="" src="web/<{$smarty.const.PLATFORM}>/image/admin/0.png" class="avatar">&nbsp;<span class="commentname"><a target="_blank" rel="nofollow" href=""><{$sonComment.username}></a></span><br><small>发布于&nbsp;<{$sonComment.publish_time|date_format:"%Y-%m-%d %H:%M:%S"}>&nbsp;&nbsp;<span class="revertcomment"><a onclick="RevertComment('<{$sonComment.id}>')" href="#comment">回复</a></span></small></li>
+			<li class="msgarticle"><{$sonComment.content}><label id="AjaxComment1"></label>
+		</ul>
+        <{/foreach}>
 	</li>
 </ul>
 <{/foreach}>
