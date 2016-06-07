@@ -33,6 +33,7 @@ class ArticleController extends Controller
     public function detail()
     {
         $id = $_GET['id'];
+        $article = ArticleModel::create()->getOneWithJoin($id);
     }
 }
 
