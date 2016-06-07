@@ -38,4 +38,17 @@ class CommentModel extends Model
                   `article_id` = {$id}";
         return $this->getAll($sql);
     }
+
+    public function limitlessLevel($comments, $parentId = 0)
+    {
+        $limitlessComments = array();
+        // 在$comments去找顶级评论
+        foreach ($comments as $comment) {
+            if ($comment['parent_id'] == $parentId) {
+                $comment['son'] = $this->limitlessLevel($comments, $comment['id']);
+                $limitlessComments[] = $comment;
+            }
+        }
+        return $limitlessComments;
+    }
 }

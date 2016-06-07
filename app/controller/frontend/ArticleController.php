@@ -38,7 +38,11 @@ class ArticleController extends Controller
         ArticleModel::create()->increaseReadNumber($id);
         $article = ArticleModel::create()->getOneWithJoin($id);
         // 将文章的所有评论查询出来
-        $comments = CommentModel::create()->getAllWithJoinUserByArticleId($id);
+        $comments = CommentModel::create()->limitlessLevel(
+            CommentModel::create()->getAllWithJoinUserByArticleId($id)
+        );
+        print_r($comments);die;
+
         $this->s->assign(array(
             'article' => $article,
             'comments' => $comments,
