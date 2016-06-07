@@ -10,8 +10,8 @@
 </head>
 <header class="header">    <div class="logo"><a href="#"></a></div>
     <div class="user"style="min-width:800px;max-width:1000px"> <a href="" title="编辑"><img src="web/backend/image/admin/0.png" width="40" hei ght="40" id="avatar" alt="Avatar" /></a>
-      <div class="username" >管理员：admin；上次登录时间是：2016-04-15 03:10:32；上次登录的IP地址是：::1</div>
-      <div class="userbtn"><a class="profile" href="" title="" target="_blank">站点首页</a>&nbsp;&nbsp;<a class="logout" href="index.php?p=backend&c=User&a=logout" title="" target="_top">退出登录</a></div>
+      <div class="username" >管理员：<?= $_SESSION['user']['username'] ?>；本次登录时间是：<?= date('Y-m-d H:i:s', $_SESSION['loginTime']) ?>；IP地址是：<?= $_SERVER['REMOTE_ADDR'] ?></div>
+      <div class="userbtn"><a class="profile" href="index.php?p=frontend&c=Article&a=getList" title="" target="_blank">站点首页</a>&nbsp;&nbsp;<a class="logout" href="index.php?p=backend&c=User&a=logout" title="" target="_top">退出登录</a></div>
     </div>
     <div class="menu">
       <ul id="topmenu">

@@ -1,46 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<meta http-equiv="Content-Language" content="zh-CN" />
-	<title>www.myblog.com - 数量测试 - Powered by ITCAST</title>
-    
-    <meta name="keywords" content="TQBlog,开源博客系统,PHP,MySQL,OpenSource,Blog,CMS系统" />
-	<meta name="description" content="TQBlog 开源博客系统，是一个采用 PHP 和 MySQL SQLite 等其他多种数据库构建的性能优异、功能实用、体积小速度快、安全稳定的个人博客系统。" />
-    <meta name="generator" content="TQBlog V2.0 Release 20140101" />
-	<meta name="author" content="TQBlog Team" />
-	<meta name="copyright" content="2008-2028 tqtqtq.com" />
-	<meta name="MSSmartTagsPreventParsing" content="True" />
-	<meta http-equiv="MSThemeCompatible" content="Yes" />
-
-	<link rel="shortcut icon" href="favicon.ico" />
-	<link rel="stylesheet" rev="stylesheet" href="web/<{$smarty.const.PLATFORM}>/style/default.css" type="text/css" media="all"/>
-	<script src="web/<{$smarty.const.PLATFORM}>/script/common.js" type="text/javascript"></script>
-	<link rel="alternate" type="application/rss+xml" href="feed.php" title="www.myblog.com" />
-
-</head>
-<body class="single article">
-
-<!-- top bar -->
-<div id="top">
-	<div class="center">
-    <div class="menu-left">
-    <ul>
-     <li><a href="javascript:;" onclick="setHomepage('');">设为首页</a></li>
-     <li><a href="javascript:;" onclick="addFavorite('','www.myblog.com - Welcome to TQBlog!')">收藏本站</a></li>      
-    </ul>
-    </div>
-	 <div class="menu-right">
-    <ul id="info">
-		
-        <li>欢迎 admin(管理员)！</li>
-        <li><a href="/admin/admin.php" target="_blank">管理</a></li>
-        <li><a href="index.php?module=Privilege&action=logout">退出</a></li>       
-    </ul>
-    </div>
-   </div>	
-</div>
-  
+<{include file="../common/header.html"}>
 <div id="divAll">
 	<div id="divPage">
 	<div id="divMiddle">
@@ -187,13 +145,4 @@
 
 </dd>
 </dl>		</div>
-		<div id="divBottom">
-        	<h3 id="BlogCopyRight">
-                                            	Copyright © 2008-2028 tqtqtq.com All Rights Reserved            </h3>
-			<h4 id="BlogPowerBy">Powered by <a href="http://www.tqtqtq.com/" title="TQBlog" target="_blank">TQBlog V2.0 Release 20140101</a></h4>
-		</div><div class="clear"></div>
-	</div><div class="clear"></div>
-	</div><div class="clear"></div>
-</div>
-</body>
-</html><!--86.655ms-->
+<{include file="../common/footer.html"}>

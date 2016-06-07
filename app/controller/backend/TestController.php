@@ -9,6 +9,7 @@ class TestController extends Controller
 {
     public function test()
     {
+        echo '111';die;
         $o = new \app\model\TestModel('Product');
         $o->challenge();
         echo '感觉自己萌萌哒。';

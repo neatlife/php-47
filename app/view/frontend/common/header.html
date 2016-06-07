@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <title>www.myblog.com - 数量测试 - Powered by ITCAST</title>
+
+    <meta name="keywords" content="TQBlog,开源博客系统,PHP,MySQL,OpenSource,Blog,CMS系统" />
+    <meta name="description" content="TQBlog 开源博客系统，是一个采用 PHP 和 MySQL SQLite 等其他多种数据库构建的性能优异、功能实用、体积小速度快、安全稳定的个人博客系统。" />
+    <meta name="generator" content="TQBlog V2.0 Release 20140101" />
+    <meta name="author" content="TQBlog Team" />
+    <meta name="copyright" content="2008-2028 tqtqtq.com" />
+    <meta name="MSSmartTagsPreventParsing" content="True" />
+    <meta http-equiv="MSThemeCompatible" content="Yes" />
+
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" rev="stylesheet" href="web/<{$smarty.const.PLATFORM}>/style/default.css" type="text/css" media="all"/>
+    <script src="web/<{$smarty.const.PLATFORM}>/script/common.js" type="text/javascript"></script>
+    <link rel="alternate" type="application/rss+xml" href="feed.php" title="www.myblog.com" />
+
+</head>
+<body class="single article">
+
+<!-- top bar -->
+<div id="top">
+    <div class="center">
+        <div class="menu-left">
+            <ul>
+                <li><a href="javascript:;" onclick="setHomepage('');">设为首页</a></li>
+                <li><a href="javascript:;" onclick="addFavorite('','www.myblog.com - Welcome to TQBlog!')">收藏本站</a></li>
+            </ul>
+        </div>
+        <div class="menu-right">
+            <ul id="info">
+                <{if $smarty.session.loginFlag}>
+                    <li>欢迎 <{$smarty.session.user.username}>
+                        <{if $smarty.session.user.nickname}>
+                            (<{$smarty.session.user.nickname}>)
+                        <{/if}>
+                        ！
+                    </li>
+                    <li><a href="index.php?p=backend&c=Index&a=Index" target="_blank">管理</a></li>
+                    <li><a href="index.php?p=backend&c=User&a=logout">退出</a></li>
+                <{else}>
+                    <li><a href="index.php?p=backend&c=User&a=login">立即登陆</a></li>
+                <{/if}>
+            </ul>
+        </div>
+    </div>
+</div>

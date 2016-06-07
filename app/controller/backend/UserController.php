@@ -116,6 +116,7 @@ class UserController extends \core\Controller
             if (!empty($user)) {
                 // 用户登录成功
                 $_SESSION['loginFlag'] = true;
+                $_SESSION['loginTime'] = time();
                 $_SESSION['user'] = $user;
                 $this->redirect('index.php?p=backend&c=Index&a=index', '登录成功。');
             } else {

@@ -138,9 +138,9 @@ class Application
     protected static function _parseUrlParams()
     {
         // p a c
-        $p = isset($_GET['p']) ? $_GET['p'] : 'backend';// 平台
-        $a = isset($_GET['a']) ? $_GET['a'] : 'test'; // 方法
-        $c = isset($_GET['c']) ? $_GET['c'] : 'Test'; // 控制器
+        $p = isset($_GET['p']) ? $_GET['p'] : self::$config['defaultPlatform'];// 平台
+        $a = isset($_GET['a']) ? $_GET['a'] : self::$config['defaultAction']; // 方法
+        $c = isset($_GET['c']) ? $_GET['c'] : self::$config['defaultController']; // 控制器
 
         define('PLATFORM', $p);
         define('ACTION', $a);

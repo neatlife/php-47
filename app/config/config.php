@@ -1,6 +1,10 @@
 <?php
 
 $config = array(
+    'defaultPlatform' => 'frontend',
+    'defaultAction' => 'getList',
+    'defaultController' => 'Article',
+
     'database' => array(
         'type' => 'mysql',
         'host' => 'localhost',
