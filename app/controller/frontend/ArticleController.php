@@ -41,6 +41,11 @@ class ArticleController extends Controller
         ));
         $this->s->display('frontend/article/detail.html');
     }
+
+    public function praise()
+    {
+        
+    }
 }
 
 
