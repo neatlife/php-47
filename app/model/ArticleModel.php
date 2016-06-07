@@ -37,4 +37,25 @@ class ArticleModel extends \core\Model
         }
         return $this->getAll($sql);
     }
+
+    public function getOneWithJoin($id)
+    {
+        $sql = "SELECT
+                  `article`.*,
+                  `user`.`username`,
+                  `category`.`name` AS category_name,
+                  COUNT(`comment`.`id`) AS comment_count
+                FROM
+                  `article`
+                LEFT JOIN
+                  `user` ON `article`.`author_id` = `user`.`id`
+                LEFT JOIN
+                  `category` ON `article`.`category_id` = `category`.`id`
+                LEFT JOIN
+                  `comment` ON `comment`.`article_id` = `article`.`id`
+                WHERE `article`.`id`={$id}
+                GROUP BY
+                  `article`.`id`;";
+        return $this->getOne($sql);
+    }
 }
