@@ -58,4 +58,10 @@ class ArticleModel extends \core\Model
                   `article`.`id`;";
         return $this->getOne($sql);
     }
+
+    public function increaseReadNumber($id)
+    {
+        $sql = "UPDATE `article` SET `read`=`read`+1 WHERE id={$id}";
+        return $this->exec($sql);
+    }
 }

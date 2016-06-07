@@ -33,6 +33,8 @@ class ArticleController extends Controller
     public function detail()
     {
         $id = $_GET['id'];
+        // 给id为$id的文章的阅读数+1
+        ArticleModel::create()->increaseReadNumber($id);
         $article = ArticleModel::create()->getOneWithJoin($id);
         $this->s->assign(array(
             'article' => $article,
