@@ -55,12 +55,12 @@
 
 		<div id="divMain">
 <div class="post single">
-	<h4 class="post-date">2016��?m��?d��?</h4>
-	<h2 class="post-title">遍访湖湘美食</h2>
-	<div class="post-body">长沙步行街南大门四娭毑臭豆腐，每天排队至少30人以上。</div>
+	<h4 class="post-date"><{$article.published_date|date_format:"%Y-%m-%d %H:%M:%S"}></h4>
+	<h2 class="post-title"><{$article.title}></h2>
+	<div class="post-body"><{$article.content}></div>
 	<h5 class="post-tags"></h5>
 	<h6 class="post-footer">
-		作者: | 分类:臭豆腐 | 阅读:1 | 评论:3 | <a href="index.php?module=Article&action=good&id=2">赞</a>:1 	</h6>
+		作者: <{$article.username}>| 分类: <{$article.category_name}>| 阅读: <{$article.read}> | 评论: <{$article.comment_count}> | <a href="index.php?module=Article&action=good&id=2">赞</a>: <{$article.praise}> 	</h6>
 </div>
 
 
