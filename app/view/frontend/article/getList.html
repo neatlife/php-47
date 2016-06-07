@@ -53,7 +53,7 @@
 			<{foreach $articles as $article}>
 				<div class="post multi">
 					<h4 class="post-date"><{$article.published_date|date_format:"%Y-%m-%d %H:%M:%S"}></h4>
-					<h2 class="post-title"><a href="index.php?module=Article&id=1" target="_blank"><{$article.title}></a></h2>
+					<h2 class="post-title"><a href="index.php?p=frontend&c=Article&a=detail&id=<{$article.id}>" target="_blank"><{$article.title}></a></h2>
 					<div class="post-body">
 						<{$article.content}>
 					</div>
