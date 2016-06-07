@@ -12,6 +12,7 @@ namespace app\controller\frontend;
 
 use app\model\ArticleModel;
 use app\model\CategoryModel;
+use app\model\CommentModel;
 use core\Controller;
 
 class ArticleController extends Controller
@@ -36,8 +37,11 @@ class ArticleController extends Controller
         // 给id为$id的文章的阅读数+1
         ArticleModel::create()->increaseReadNumber($id);
         $article = ArticleModel::create()->getOneWithJoin($id);
+        // 将文章的所有评论查询出来
+        $comments = CommentModel::create()->getAllWithJoinUserByArticleId($id);
         $this->s->assign(array(
             'article' => $article,
+            'comments' => $comments,
         ));
         $this->s->display('frontend/article/detail.html');
     }

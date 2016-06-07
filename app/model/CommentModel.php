@@ -24,4 +24,18 @@ class CommentModel extends Model
                       LEFT JOIN `comment` AS a ON `comment`.`parent_id`=a.`id`";
         return $this->getAll($sql);
     }
+
+    public function getAllWithJoinUserByArticleId($id)
+    {
+        $sql = "SELECT
+                  `comment`.*,
+                  `user`.`username`
+                FROM
+                  `comment`
+                LEFT JOIN
+                  `user` ON `comment`.`user_id` = `user`.`id`
+                WHERE
+                  `article_id` = {$id}";
+        return $this->getAll($sql);
+    }
 }
