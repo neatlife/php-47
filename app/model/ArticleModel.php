@@ -64,4 +64,23 @@ class ArticleModel extends \core\Model
         $sql = "UPDATE `article` SET `read`=`read`+1 WHERE id={$id}";
         return $this->exec($sql);
     }
+
+    public function increasePraiseNumber($id)
+    {
+        $sql = "UPDATE `article` SET `praise`=`praise`+1 WHERE id={$id}";
+        return $this->exec($sql);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
