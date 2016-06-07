@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-06-07 08:34:13
+-- Generation Time: 2016-06-07 21:28:52
 -- 服务器版本： 5.7.9
 -- PHP Version: 5.6.15
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `article` (
 --
 
 INSERT INTO `article` (`id`, `category_id`, `author_id`, `title`, `published_date`, `status`, `content`, `top`, `read`, `praise`) VALUES
-(1, 2, 2, 'php是世界上最好的语言', 1464766075, 1, '<p>今天天气很好</p>\r\n', 1, 0, 0),
+(1, 2, 2, 'php是世界上最好的语言', 1464766075, 1, '<p>今天天气很好</p>\r\n', 1, 57, 6),
 (2, 3, 2, 'javascript从入门到放弃', 1448008399, 2, '<p>1.。。。</p>\r\n', 2, 0, 0),
 (3, 4, 1, '数据库从入门到跑路', 1448008399, 2, '<p>1.mysql</p>\r\n\r\n<p>2.....</p>\r\n', 2, 0, 0),
 (4, 2, 2, '1', 1448008399, 2, '<p>1</p>\r\n', 2, 0, 0);
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `content` varchar(500) NOT NULL,
   `publish_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `comment`
@@ -114,7 +114,10 @@ INSERT INTO `comment` (`id`, `user_id`, `article_id`, `parent_id`, `content`, `p
 (2, 3, 2, 1, '么么哒2', 1464936963),
 (3, 2, 3, 0, '么么哒3', 1464936963),
 (4, 1, 1, 0, '么么哒4', 1464936963),
-(5, 2, 1, 0, '么么哒5', 1464936963);
+(5, 2, 1, 0, '么么哒5', 1464936963),
+(6, 1, 1, 0, '天王盖地虎，全考985，宝塔镇河妖，全上211.', 1465283837),
+(7, 1, 1, 0, '守望先锋。', 1465287335),
+(8, 1, 1, 7, '炮塔', 1465287478);
 
 -- --------------------------------------------------------
 
