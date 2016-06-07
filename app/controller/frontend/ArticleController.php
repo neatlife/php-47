@@ -44,9 +44,19 @@ class ArticleController extends Controller
 
     public function praise()
     {
+        $this->denyAccess();
+
         $id = $_GET['id'];
-        ArticleModel::create()->increasePraiseNumber($id);
-        $this->redirect("index.php?p=frontend&c=Article&a=detail&id={$id}", "点赞成功。");
+        // if (id为$id的文章没有赞过) {
+        if (!isset($_SESSION["praise_$id"]) || $_SESSION["praise_$id"] != true) {
+            ArticleModel::create()->increasePraiseNumber($id);
+        //    id为$id的文章已经赞过了
+            $_SESSION["praise_$id"] = true;
+            $this->redirect("index.php?p=frontend&c=Article&a=detail&id={$id}", "点赞成功。");
+        } else {
+            // 已经赞过
+            $this->redirect("index.php?p=frontend&c=Article&a=detail&id={$id}", "已经赞过了，不能重复点赞。");
+        }
     }
 }
 
