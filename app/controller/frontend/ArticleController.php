@@ -44,7 +44,9 @@ class ArticleController extends Controller
 
     public function praise()
     {
-        
+        $id = $_GET['id'];
+        ArticleModel::create()->increasePraiseNumber($id);
+        $this->redirect("index.php?p=frontend&c=Article&a=detail&id={$id}", "点赞成功。");
     }
 }
 
