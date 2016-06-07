@@ -1,0 +1,80 @@
+1.文章详情的查询(sql)
+
+SELECT
+  `article`.*,
+  `user`.`username`,
+  `category`.`name` AS category_name,
+  COUNT(`comment`.`id`) AS comment_count
+FROM
+  `article`
+LEFT JOIN
+  `user` ON `article`.`author_id` = `user`.`id`
+LEFT JOIN
+  `category` ON `article`.`category_id` = `category`.`id`
+LEFT JOIN
+  `comment` ON `comment`.`article_id` = `article`.`id`
+WHERE `article`.`id`=1
+GROUP BY
+  `article`.`id`;
+
+1.1 文章详情页面的显示
+	p=frontend
+	c=Article
+	a=detail
+
+	html文件
+	view/frontend/article/detail.html
+
+2.文章增加阅读数的分析和代码实现
+3.文章点赞的流程分析和代码实现
+	p=frontend
+	c=Article
+	a=praise
+4.文章阅读数(read)，评论数(left join comment)，点赞数的显示和代码里的sql查询的实现
+5.社会化分享按钮百度分享的添加
+6.评论功能的流程分析和代码实现
+	p=frontend
+	a=add
+	c=Comment(和表名保持一致是好习惯)
+
+	天王盖地虎，全考985，宝塔镇河妖，全上211.
+
+7.评论列表的查询和显示
+SELECT
+  `comment`.*,
+  `user`.`username`
+FROM
+  `comment`
+LEFT JOIN
+  `user` ON `comment`.`user_id` = `user`.`id`
+WHERE
+  `article_id` = 1
+8.分类的显示(选)
+
+
+
+1.继续讲解收集的博客的问题
+2.我去优化博客（你们看着）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,332 @@
+详细计划：
+
+框架的目录规划
+编码规范
+mvc和oop,名字空间简单复习
+框架启动流程分析
+框架启动类编写
+框架文件自动加载(结合名字空间)的设计和代码实现
+C:\wamp\www\day11\app/controller/backend/TestController.php
+C:\wamp\www\day11\app\controller\backend\TestController.php 在linux上程序会崩溃
+
+DS的值在linux下会变成/
+C:/wamp/www/day11/app/controller/backend/TestController.php
+/usr/local/htdocs/app/controller/backend/TestController.php
+
+
+框架路由分发流程设计和代码实现
+视图核心类的设计和实现（选）
+
+
+控制器核心类设计
+控制器核心类的redirect(jump)方法实现
+
+模型核心父类PDOWrapper的引入以及api源码分析
+
+
+详细计划：
+模型核心类的分析和常用api(类的方法)的编写 (完成)
+后台页面的引入和后台框架搭建iframe的框架的流程分析
+	后台首页控制器：Index
+		骨架页
+		c=Index
+		p=backend
+		a=index
+		头部
+		c=Index
+		p=backend
+		a=header
+		菜单
+		c=Index
+		p=backend
+		a=menu
+		主体
+		c=Index
+		p=backend
+		a=content
+
+
+1.用框架改造用户管理
+	添加
+		p=backend
+		c=User
+		a=add
+	列表
+		p=backend
+		c=User
+		a=getList
+	删除
+		p=backend
+		c=User
+		a=delete
+	修改
+		p=backend
+		c=User
+		a=update
+2.登录流程设计
+	登录页面：
+		p=backend
+		c=User
+		a=login
+3.验证码验证流程设计
+
+
+
+4.验证码类引入和代码使用
+5.sql注入攻击的原理分析和代码实现
+6.crsf攻击的原理分析的代码防范(可能延期)
+
+注册流程分析和设计(选)
+用户注册的代码实现（选）
+用户自动登录的设计和代码实现(选)
+
+
+
+
+
+0.权限控制
+1.用户退出
+	p=backend
+	c=User
+	a=logout
+		$_SESSION['loginFlag'] = false;
+2.验证码的使用
+	p=backend
+	c=User
+	a=captcha
+3.sql注入攻击的原理分析和代码实现
+	addslashes()
+4.crsf攻击的原理分析的代码防范(可能延期)
+	str_replace()
+5.分类表数据库分析和设计
+6.添加分类
+	p=backend
+	c=Category
+	a=add
+7.无限极分类的原理分析的代码实现 A*****
+8.分类列表
+	p=backend
+	c=Category
+	a=getList
+9.修改分类
+	p=backend
+	c=Category
+	a=update(比edit要专业一点...)
+10.删除分类
+	p=backend
+	c=Category
+	a=delete
+
+
+
+
+
+
+
+
+1.删除分类(二)
+	p=backend
+	c=Category
+	a=delete
+2.修改分类
+	p=backend
+	c=Category
+	a=update(比edit要专业一点...)
+
+3.文章表数据库设计
+4.富文本编辑器功能和原理介绍
+
+文章表的添加，列表。
+
+5.添加文章分析和代码实现
+	p=backend
+	c=Article
+	a=add
+6.文章列表
+	p=backend
+	c=Article
+	a=getList
+
+6.1 文章搜索
+7.文章分页
+
+
+8.文章连接分类表查询分类名(左连接)
+9.分类连文章表查询文章数(左连接)
+
+10.文章的删除(选)
+	p=backend
+	c=Article
+	a=delete
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+php工程师不需要关心算法
+排序：
+
+1. sort
+2. rsrot
+3. asort
+4. srsort
+5. ksort
+6. krsort
+...
+...
+...
+
+是不是父亲里找儿子 儿子又变父亲  找儿子的儿子 找不到 返回爷爷 找儿子
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1.分类连文章表查询文章数(左连接)
+2.文章连接分类表查询分类名(左连接)
+3.文章表连接用户表查询用户的用户名(username)(左连接)
+
+4.评论表数据库设计
+5.评论表连文章查询文章名(左连接)
+6.文章表连评论表查询评论数(左连接)
+
+7.评论列表
+	权限？denyAccess()
+	p=backend
+	c=Comment
+	a=getList
+	1. 创建评论表(comment)对应的控制器
+	2. 创建评论表(comment)对应的模型
+8.评论的删除
+	权限？denyAccess()
+	p=backend
+	c=Comment
+	a=delete
+
+
+9.后台功能总结
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mvc里什么是核心？C控制器是核心
+总结控制器里的增删改查的标准流程：
+
+
+增：
+1.实例化模型
+	a) 提交添加表单
+		1.接收并处理数据
+		1.1对数据进行防止sql注入攻击的过滤
+		1.2对数据进行防止csrf注入攻击的过滤
+		2.调用模型插入数据
+		3.成功/失败 给用户一个明确的提示，并返回到合理的页面
+	b) 显示添加表单的html
+		1.显示添加表单的html
+
+删：
+1.获取即将删除的记录的记录的id（唯一标识该行记录的条件）
+1.1对id进行防止sql注入攻击的过滤
+1.2对id进行防止csrf注入攻击的过滤
+2.调用模型完成数据的删除
+3.成功/失败 给用户一个明确的提示，并返回到合理的页面
+
+
+改：
+1.获取即将修改的记录的记录的id（唯一标识该行记录的条件）
+2.实例化模型
+	a)提交修改的表单
+		1.接收并处理数据
+		1.1对数据进行防止sql注入攻击的过滤
+		1.2对数据进行防止csrf注入攻击的过滤
+		2.调用模型修改数据
+		3.成功/失败 给用户一个明确的提示，并返回到合理的页面
+	b)显示修改表单的html
+		1.显示修改表单的html
+
+查：
+1.实例化模型
+2.调用模型完成数据的获取
+3.加载用于显示数据列表的html，并将模型数据传递到列表html中
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

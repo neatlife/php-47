@@ -1,0 +1,106 @@
+自定义函数
+	1.Smarty的html_options函数生成html里的select option标签的编写
+		<select>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+		</select>
+	2.html_checkboxes,使用Smarty生成html里的<input type="checkbox" />标签
+	3.html_radios，使用Smarty生成html里的<input type="radio" />
+	4.cycle标签让表格隔行变色
+		<table>
+			<tr style="background-color:red">
+			</tr>
+			<tr style="background-color:blue">
+			</tr>
+			<tr style="background-color:red">
+			</tr>
+			<tr style="background-color:blue">
+			</tr>
+			<tr style="background-color:red">
+			</tr>
+			<tr style="background-color:blue">
+			</tr>
+		</table>
+
+		<{foreach $users as $user}>
+			<tr style="background-color:red">
+			</tr>
+		<{/foreach}>
+	5.literal让标签包裹上的smarty的表达式的内容原样，smarty的标签不会被Smarty解析
+		<{$user.username}>
+
+		<literal>
+			<style>
+				body {
+				}
+			</style>
+		</literal>
+
+
+
+1.Smarty模板引擎的引入,初始化
+	在前台创建一个测试的控制器
+		p=frontend
+		c=Test
+		a=test
+2.文章列表的查询(sql语句)
+	SELECT `article`.*, `user`.`username`, `category`.`name` AS category_name, count(`comment`.`id`) AS comment_count FROM `article` LEFT JOIN `user` ON `article`.`author_id` = `user`.`id`LEFT JOIN `category` ON `article`.`category_id` = `category`.`id` LEFT JOIN `comment` ON `comment`.`article_id`=`article`.`id` GROUP BY `article`.`id`
+3.文章列表的显示
+	p=frontend
+	a=getList
+	c=Article
+4.分类的显示分析和代码实现
+5.按标题检索(选)
+6.分页(选)
+
+
+
+
+
+
+
+
+
+
+1.不明白CategoryController里面的删除功能有下一级的不能删除的代码
+2.sql语句的攻击那不明白
+3.修改分类update.html中的selected
+4.名字空间还是不太理解
+5.每次点击刷新按钮都会进入后台主页，怎么在刷新时还停留在当前页面？
+6.基础模型类的功能设计
+7.自动加载是不是和名字空间有关系
+8.搜索完毕后，点击分页后搜索的条件又变成初始值了，如何解决？(提升)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
