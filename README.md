@@ -15,7 +15,7 @@ app                       包含MVC和配置文件
     frontend/             包含前端控制器文件
     backend/              包含后端控制器文件
 core                      包含框架和核心文件
-vendor                    包含第三方代码
+vendor                    包含第三方代码文件
   smarty/                 包含smarty库核心文件
 web                       包含前后端静态资源文件
   backend/                包含后端静态资源文件
