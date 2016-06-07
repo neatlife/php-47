@@ -49,19 +49,21 @@ class ArticleController extends \core\Controller
     {
         $this->denyAccess();
         $where = '2 > 1';
-        if ($_POST) {
-            if ($_POST['category']) {
-                $where .= " AND category_id = '{$_POST['category']}'";
-            }
-            if ($_POST['status']) {
-                $where .= " AND status = '{$_POST['status']}'";
-            }
-            if (isset($_POST['istop'])) {
-                $where .= " AND top = '{$_POST['istop']}'";
-            }
-            if ($_POST['search']) {
-                $where .= " AND title LIKE '%{$_POST['search']}%'";
-            }
+        $category = isset($_REQUEST['category']) ? $_REQUEST['category'] : '';
+        $status = isset($_REQUEST['status']) ? $_REQUEST['status'] : '';
+        $istop = isset($_REQUEST['istop']) ? $_REQUEST['istop'] : '';
+        $search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
+        if ($category) {
+            $where .= " AND category_id = '{$category}'";
+        }
+        if ($status) {
+            $where .= " AND status = '{$status}'";
+        }
+        if ($istop) {
+            $where .= " AND top = '{$istop}'";
+        }
+        if ($search) {
+            $where .= " AND title LIKE '%{$search}%'";
         }
         /*
         $pager = new Pager(总的记录数, 每页记录数, 当前页数, 'php入口脚本index.php', array(参数
@@ -73,10 +75,14 @@ class ArticleController extends \core\Controller
         */
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $pageSize = 1;
-        $pager = new Pager(ArticleModel::create()->count(), $pageSize, $page, 'index.php', array(
+        $pager = new Pager(ArticleModel::create()->count($where), $pageSize, $page, 'index.php', array(
             'p' => 'backend',
             'c' => 'Article',
             'a' => 'getList',
+            'category_id' => $category,
+            "status" => $status,
+            'top' => $istop,
+            'search' => $search,
         ));
         // 获取分页按钮
         $pageButtons = $pager->showPage();
@@ -91,6 +97,7 @@ class ArticleController extends \core\Controller
             'articles' => $articles,
             'categories' => $categories,
             'pageButtons' => $pageButtons,
+            'search' => $search,
         ));
     }
 }

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="noindex,nofollow"/>
+    <meta name="generator" content="myblog V1.0 Release 20151116" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Refresh" content="<?= $waitSeconds ?>;url=<?= $url ?>">
+    <title>www.myblog.com - 提示 - Powered by ITCAST</title>
+    <link rel="shortcut icon" href="http://localhost/tqblog/favicon.ico" />
+    <link rel="stylesheet" href="backend/css/module.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="backend/script/common.js"></script>
+    <style type="text/css">
+        .content div{
+        }
+        .content {
+            font-size: 2em;
+            text-align: center;
+            color: deeppink;
+        }
+    </style>
+</head>
+<body class="short">
+
+<!-- top bar -->
+<div id="top">
+    <div class="center">
+        <div class="menu-left">
+            <ul>
+                <li><a href="">返回首页</a></li>
+            </ul>
+        </div>
+        <div class="menu-right">
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="bg">
+    <div id="wrapper">
+        <div class="logo"><a href="" title="www.myblog.com"></a></div>
+        <div class="login loginw">
+            <form id="frmLogin" method="post" action="#">
+                <div class="divHeader">提示！</div>
+                <div class="content">
+                        <?= $msg ?>
+                </div>
+                <p><a href="javascript:location.reload()">刷新</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="admin.php?module=Article&action=index">后立即跳转</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+</script>
+</body>
+</html>

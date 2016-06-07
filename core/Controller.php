@@ -56,10 +56,14 @@ class Controller
         require VIEW_PATH . DS . PLATFORM . DS . $name . '.html';
     }
 
-    public function redirect($url, $msg = '', $waitSeconds = 3)
+    public function redirect($url, $msg = '', $waitSeconds = 3, $type = 1)
     {
-        header('Refresh: ' . $waitSeconds . '; url=' . $url);
-        echo $msg;
+        if ($type == 1) {
+            require VIEW_PATH . DS . 'redirect.html';
+        } else {
+            header('Refresh: ' . $waitSeconds . '; url=' . $url);
+            echo $msg;
+        }
     }
 }
 
