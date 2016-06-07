@@ -34,7 +34,7 @@
 <{foreach $comments as $comment}>
 <ul id="cmt1" class="msg">
 	<li class="msgname">
-		<img width="32" alt="" src="web/<{$smarty.const.PLATFORM}>/image/admin/0.png" class="avatar">&nbsp;
+		<img width="32" alt="" src="<{$smarty.const.PLATFORM}>/image/admin/0.png" class="avatar">&nbsp;
 		<span class="commentname">
 			<a target="_blank" rel="nofollow" href=""><{$comment.username}></a>
 			</span><br>
@@ -48,7 +48,7 @@
         <{foreach $comment.son as $sonComment}>
 		<label id="cmt2"></label>
 		<ul id="cmt2" class="msg">
-			<li class="msgname"><img width="32" alt="" src="web/<{$smarty.const.PLATFORM}>/image/admin/0.png" class="avatar">&nbsp;<span class="commentname"><a target="_blank" rel="nofollow" href=""><{$sonComment.username}></a></span><br><small>发布于&nbsp;<{$sonComment.publish_time|date_format:"%Y-%m-%d %H:%M:%S"}>&nbsp;&nbsp;<span class="revertcomment"><a onclick="RevertComment('<{$sonComment.id}>')" href="#comment">回复</a></span></small></li>
+			<li class="msgname"><img width="32" alt="" src="<{$smarty.const.PLATFORM}>/image/admin/0.png" class="avatar">&nbsp;<span class="commentname"><a target="_blank" rel="nofollow" href=""><{$sonComment.username}></a></span><br><small>发布于&nbsp;<{$sonComment.publish_time|date_format:"%Y-%m-%d %H:%M:%S"}>&nbsp;&nbsp;<span class="revertcomment"><a onclick="RevertComment('<{$sonComment.id}>')" href="#comment">回复</a></span></small></li>
 			<li class="msgarticle"><{$sonComment.content}><label id="AjaxComment1"></label>
 		</ul>
         <{/foreach}>
@@ -141,7 +141,7 @@
 <dt style="display:none;"></dt><dd class="function_c">
 
 
-<ul><li><a href="http://www.tqtqtq.com/" target="_blank"><img src="web/<{$smarty.const.PLATFORM}>/image/logo/tqblog.gif" height="31" width="88" alt="TQBlog" /></a></li><li><a href="feed.php" target="_blank"><img src="web/<{$smarty.const.PLATFORM}>/image/logo/rss.png" height="31" width="88" alt="订阅本站的 RSS 2.0 新闻聚合" /></a></li></ul>
+<ul><li><a href="http://www.tqtqtq.com/" target="_blank"><img src="<{$smarty.const.PLATFORM}>/image/logo/tqblog.gif" height="31" width="88" alt="TQBlog" /></a></li><li><a href="feed.php" target="_blank"><img src="<{$smarty.const.PLATFORM}>/image/logo/rss.png" height="31" width="88" alt="订阅本站的 RSS 2.0 新闻聚合" /></a></li></ul>
 
 </dd>
 </dl>		</div>
