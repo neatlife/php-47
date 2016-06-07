@@ -9,7 +9,7 @@
 
 namespace vendor;
 
-require ROOT_PATH . DS . 'vendor' .DS . 'libs' . DS . 'Smarty.class.php';
+require ROOT_PATH . DS . 'vendor' .DS . 'smarty' . DS . 'Smarty.class.php';
 
 class Smarty extends \Smarty
 {
