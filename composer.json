@@ -1,0 +1,10 @@
+{
+    "name": "suxiaolin/php-47",
+    "description": "传智播客PHP就业班 47期 博客项目",
+    "keywords": ["framework", "itcast", "blog"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "smarty/smarty": "3.1.16"
+    }
+}
