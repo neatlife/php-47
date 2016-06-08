@@ -50,9 +50,13 @@
 
 namespace core;
 
+use vendor\Input;
+
 class Application
 {
     public static $config;
+    public static $rawGET;
+    public static $rawPOST;
 
     public static function run()
     {
@@ -76,6 +80,9 @@ class Application
 
         // 注册自动加载
         self::_registerAutoload();
+
+        // 过滤$_GET, $_POST全局参数
+        self::_filterGlobalVariable();
 
         // 分发路由
         self::_dispatchRoute();
@@ -150,5 +157,13 @@ class Application
         $c = '\\app\\controller\\' . PLATFORM . '\\' . CONTROLLER . 'Controller';
         $ctrl = new $c();
         $ctrl->$a();
+    }
+
+    protected static function _filterGlobalVariable()
+    {
+        self::$rawGET = $_GET;
+        self::$rawPOST = $_POST;
+        $_GET = Input::addslashes($_GET);
+        $_POST = Input::addslashes($_POST);
     }
 }

@@ -28,10 +28,10 @@ class UserController extends \core\Controller
             );
             if ($userModel->add($data)) {
                 // 插入成功
-                $this->redirect('index.php?p=backend&c=User&a=getList', '插入成功。');
+                $this->redirect(array('a' => 'getList'), '插入成功。');
             } else {
                 // 插入失败
-                $this->redirect('index.php?p=backend&c=User&a=add', '插入失败');
+                $this->redirect(array(), '插入失败');
             }
         } else {
             $this->loadHtml('user/useradd');
@@ -59,9 +59,9 @@ class UserController extends \core\Controller
 
         // 将sql语句发送到mysql服务器里执行
         if ($userModel->deleteById($id)) {
-            $this->redirect('index.php?p=backend&c=User&a=getList', '删除成功');
+            $this->redirect(array('a' => 'getList'), '删除成功');
         } else {
-            $this->redirect('index.php?p=backend&c=User&a=getList', '删除失败');
+            $this->redirect(array('a' => 'getList'), '删除失败');
         }
     }
 
@@ -81,9 +81,9 @@ class UserController extends \core\Controller
                 'email' => str_replace('</script>', '', str_replace('<script>', '', $_POST['Email'])),
             );
             if ($userModel->updateById($id, $data)) {
-                $this->redirect('index.php?p=backend&c=User&a=getList', '修改成功');
+                $this->redirect(array('a' => 'getList'), '修改成功');
             } else {
-                $this->redirect('index.php?p=backend&c=User&a=update&id=' . $id, '修改失败');
+                $this->redirect(array('id' => $id), '修改失败');
             }
         } else {
             $user = $userModel->findOneById($id);
@@ -104,7 +104,7 @@ class UserController extends \core\Controller
                 // exit(0)
             //}
             if ($_POST['edtCaptcha'] != $_SESSION['captchaCode']) {
-                $this->redirect('index.php?p=backend&c=User&a=login', '验证码错误。');
+                $this->redirect(array(), '验证码错误。');
                 exit(0);
             }
             
@@ -122,7 +122,7 @@ class UserController extends \core\Controller
             } else {
                 // 用户登录失败
                 $_SESSION['loginFlag'] = false;
-                $this->redirect('index.php?p=backend&c=User&a=login', '登陆失败');
+                $this->redirect(array(), '登陆失败');
             }
         } else {
             $this->loadHtml('user/login');
@@ -134,7 +134,7 @@ class UserController extends \core\Controller
     {
         $_SESSION['loginFlag'] = false;
         session_destroy();
-        $this->redirect('index.php?p=backend&c=User&a=login', '退出成功');
+        $this->redirect(array('a' => 'login'), '退出成功');
     }
 
     // 输出验证码图片

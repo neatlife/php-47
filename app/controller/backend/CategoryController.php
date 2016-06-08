@@ -30,10 +30,10 @@ class CategoryController extends Controller
             );
             if (CategoryModel::create()->add($data)) {
                 // 创建成功， 跳转到分类的列表页getList?
-                $this->redirect('index.php?p=backend&a=getList&c=Category', '创建成功');
+                $this->redirect(array('a' => 'getList'), '创建成功');
             } else {
                 // 创建失败，跳转到分类的添加页add?
-                $this->redirect('index.php?p=backend&a=add&c=Category', '创建失败');
+                $this->redirect(array(), '创建失败');
             }
         } else {
             // 显示添加表单
@@ -78,9 +78,9 @@ class CategoryController extends Controller
                 'parent_id' => $_POST['ParentID'],
             );
             if (CategoryModel::create()->updateById($id, $data)) {
-                $this->redirect('index.php?p=backend&c=Category&a=getList', '修改成功');
+                $this->redirect(array('a' => 'getList'), '修改成功');
             } else {
-                $this->redirect('index.php?p=backend&c=Category&a=update&id=' . $id, '修改失败');
+                $this->redirect(array('id' => $id), '修改失败');
             }
         } else {
             // 查询出所有的分类
@@ -107,14 +107,14 @@ class CategoryController extends Controller
         //    2.跳转到分类的列表页
         //}
         if (CategoryModel::create()->count("parent_id='{$id}'") > 0) {
-            return $this->redirect('index.php?p=backend&c=Category&a=getList', '禁止删除');
+            return $this->redirect(array('a' => 'getList'), '禁止删除');
         }
 
 
         if (CategoryModel::create()->deleteById($id)) {
-            $this->redirect('index.php?p=backend&c=Category&a=getList', '删除成功。');
+            $this->redirect(array('a' => 'getList'), '删除成功。');
         } else {
-            $this->redirect('index.php?p=backend&c=Category&a=getList', '删除失败。');
+            $this->redirect(array('a' => 'getList'), '删除失败。');
         }
     }
 }

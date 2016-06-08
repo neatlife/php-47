@@ -30,9 +30,9 @@ class ArticleController extends \core\Controller
                 'author_id' => $_SESSION['user']['id'],
             );
             if (ArticleModel::create()->add($data)) {
-                $this->redirect('index.php?p=backend&c=Article&a=getList', '添加成功');
+                $this->redirect(array('a' => 'getList'), '添加成功');
             } else {
-                $this->redirect('index.php?p=backend&c=Article&a=add', '添加失败');
+                $this->redirect(array(), '添加失败');
             }
         } else {
             $categorys = CategoryModel::create()

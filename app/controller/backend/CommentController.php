@@ -27,9 +27,9 @@ class CommentController extends Controller
     {
         $id = $_GET['id'];
         if (CommentModel::create()->deleteById($id)) {
-            return $this->redirect('index.php?p=backend&c=Comment&a=getList', '删除成功');
+            return $this->redirect(array('a' => 'getList'), '删除成功');
         } else {
-            return $this->redirect('index.php?p=backend&c=Comment&a=getList', '删除失败。');
+            return $this->redirect(array('a' => 'getList'), '删除失败。');
         }
     }
 }

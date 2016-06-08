@@ -58,6 +58,18 @@ class Controller
 
     public function redirect($url, $msg = '', $waitSeconds = 3, $type = 1)
     {
+        if (is_array($url)) {
+            if (!isset($url['p'])) {
+                $url['p'] = PLATFORM;
+            }
+            if (!isset($url['c'])) {
+                $url['c'] = CONTROLLER;
+            }
+            if (!isset($url['p'])) {
+                $url['a'] = ACTION;
+            }
+            $url = '?' . http_build_query($url);
+        }
         if ($type == 1) {
             require VIEW_PATH . DS . 'redirect.html';
         } else {

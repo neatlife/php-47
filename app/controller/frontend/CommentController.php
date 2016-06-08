@@ -33,11 +33,11 @@ class CommentController extends Controller
         ))) {
             // 添加评论成功
             // 返回p=frontend c=Article a=detail id=$articleId
-            $this->redirect("index.php?p=frontend&c=Article&a=detail&id={$articleId}", "添加评论成功");
+            $this->redirect(array("c" => "Article", "a" => "detail", "id" => $articleId), "添加评论成功");
         } else {
             // 添加评论失败
             // 返回p=frontend c=Article a=detail id=$articleId
-            $this->redirect("index.php?p=frontend&c=Article&a=detail&id={$articleId}", "添加评论失败");
+            $this->redirect(array("c" => "Article", "a" => "detail", "id" => $articleId), "添加评论失败");
         }
         // var_dump($articleId, $_POST);die;
     }
