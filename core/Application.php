@@ -96,12 +96,7 @@ class Application
     // 注册自动加载
     protected static function _registerAutoload()
     {
-        spl_autoload_register(function($className) {
-            $fileName = ROOT_PATH . DS . str_replace('\\', '/', $className) . '.php';
-            if (is_file($fileName)) {
-                require $fileName;
-            }
-        });
+        require ROOT_PATH . DS . 'vendor' . DS . 'autoload.php';
     }
 
     // 设定php的错误显示和错误级别 error_reporting? display_errors?

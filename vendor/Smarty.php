@@ -9,8 +9,6 @@
 
 namespace vendor;
 
-require ROOT_PATH . DS . 'vendor' . DS . 'autoload.php';
-
 class Smarty extends \Smarty
 {
 

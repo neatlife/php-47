@@ -6,5 +6,10 @@
     "type": "project",
     "require": {
         "smarty/smarty": "3.1.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "": ""
+        }
     }
 }
