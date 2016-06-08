@@ -118,7 +118,7 @@ class UserController extends \core\Controller
                 $_SESSION['loginFlag'] = true;
                 $_SESSION['loginTime'] = time();
                 $_SESSION['user'] = $user;
-                $this->redirect($_SERVER['REFERER'], '登录成功。');
+                $this->redirect($_SERVER['HTTP_REFERER'], '登录成功。');
             } else {
                 // 用户登录失败
                 $_SESSION['loginFlag'] = false;

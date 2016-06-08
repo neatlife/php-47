@@ -32,7 +32,7 @@
         </div>
         <div class="menu-right">
             <ul id="info">
-                <{if $smarty.session.loginFlag}>
+                <{if isset($smarty.session.loginFlag) and $smarty.session.loginFlag}>
                     <li>欢迎 <{$smarty.session.user.username}>
                         <{if $smarty.session.user.nickname}>
                             (<{$smarty.session.user.nickname}>)
