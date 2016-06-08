@@ -133,6 +133,7 @@ class UserController extends \core\Controller
     public function logout()
     {
         $_SESSION['loginFlag'] = false;
+        session_destroy();
         $this->redirect('index.php?p=backend&c=User&a=login', '退出成功');
     }
 
