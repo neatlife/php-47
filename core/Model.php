@@ -51,7 +51,7 @@
 
 namespace core;
 
-class Model extends \vendor\PDOWrapper
+abstract class Model extends \vendor\PDOWrapper
 {
     public function __construct()
     {

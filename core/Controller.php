@@ -4,7 +4,7 @@ namespace core;
 use vendor\Smarty;
 
 // 核心控制器
-class Controller
+abstract class Controller
 {
     protected $s;
 

@@ -13,7 +13,6 @@ namespace app\controller\frontend;
 use app\model\ArticleModel;
 use app\model\CategoryModel;
 use app\model\CommentModel;
-use core\Controller;
 
 class ArticleController extends Controller
 {
@@ -24,11 +23,10 @@ class ArticleController extends Controller
                         ->limitlessLevelCategory(
                             CategoryModel::create()->findAll()
                         );
-        $this->s->assign(array(
+        $this->loadHtml('article/getList', array(
             'articles' => $articles,
             'categories' => $categories,
         ));
-        $this->s->display('frontend/article/getList.html');
     }
 
     public function detail()
@@ -42,12 +40,10 @@ class ArticleController extends Controller
             CommentModel::create()->getAllWithJoinUserByArticleId($id)
         );
         //print_r($comments);die;
-
-        $this->s->assign(array(
+        $this->loadHtml('article/detail', array(
             'article' => $article,
             'comments' => $comments,
         ));
-        $this->s->display('frontend/article/detail.html');
     }
 
     public function praise()
@@ -58,7 +54,7 @@ class ArticleController extends Controller
         // if (id为$id的文章没有赞过) {
         if (!isset($_SESSION["praise_$id"]) || $_SESSION["praise_$id"] != true) {
             ArticleModel::create()->increasePraiseNumber($id);
-        //    id为$id的文章已经赞过了
+            //    id为$id的文章已经赞过了
             $_SESSION["praise_$id"] = true;
             $this->redirect(array('a' => 'detail', 'id' => $id), "点赞成功。");
         } else {
